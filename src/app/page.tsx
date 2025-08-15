@@ -250,6 +250,8 @@ export default function Home() {
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
+
+      
     } finally {
       setIsLoading(false);
     }
