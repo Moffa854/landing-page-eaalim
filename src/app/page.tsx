@@ -506,7 +506,7 @@ export default function Home() {
                   <div className="relative inline-flex gap-3 -top-[65rem]">
                     <div className="relative">
                       {/* Soft blob with gradient */}
-                      <Image src={assetPath("assets/images/eaalim-meet.avif")} alt="Eaalim Meet" width={200} height={200} className="rounded-xl" />
+                      <Image src={assetPath("azhar teacher.svg")} alt="Eaalim Meet" width={200} height={200} className="rounded-xl" />
                     </div>
                   </div>
                   <div className="relative -top-[65rem]">
@@ -518,7 +518,7 @@ export default function Home() {
               </div>
 
 
-              
+
 
               {/* Milestone 2 (left) */}
               <div className="grid md:grid-cols-2 items-start">
