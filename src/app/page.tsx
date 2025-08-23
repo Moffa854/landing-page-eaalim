@@ -517,6 +517,9 @@ export default function Home() {
                 </div>
               </div>
 
+
+              
+
               {/* Milestone 2 (left) */}
               <div className="grid md:grid-cols-2 items-start">
                 <div className="md:col-start-1 md:justify-self-end">
