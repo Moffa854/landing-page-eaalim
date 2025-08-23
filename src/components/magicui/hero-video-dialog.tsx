@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Play, XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type AnimationStyle =
   | "from-bottom"
@@ -84,15 +85,16 @@ export default function HeroVideoDialog({
       <button
         type="button"
         aria-label="Play video"
-        className="relative cursor-pointer border-0 bg-transparent p-0"
+        className="relative cursor-pointer border-0 bg-transparent p-0 w-full"
         onClick={() => setIsVideoOpen(true)}
       >
-        <img
+        <Image
           src={thumbnailSrc}
           alt={thumbnailAlt}
           width={1920}
           height={1080}
-          className={cn("block w-full h-auto", imageClassName)}
+          className={cn("w-full h-auto object-cover", imageClassName)}
+          priority
         />
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex size-20 items-center justify-center rounded-full bg-red-600">

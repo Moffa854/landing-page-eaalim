@@ -2,14 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Keyframes must be at the root so browsers always see them (works in Tailwind v3/v4) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap))); }
+}
+
+/* Testimonials certificates animations */
+@keyframes cert-float-a {
+  0%, 100% {
+    transform: translateY(-6px) scale(1.05);
+  }
+  50% {
+    transform: translateY(6px) scale(0.95);
+  }
+}
+
+@keyframes cert-float-b {
+  0%, 100% {
+    transform: translateY(6px) scale(0.95);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+
+/* Animated dashed stroke for connectors */
+@keyframes dash-move {
+  to { stroke-dashoffset: -200; }
+}
+
+/* Optional theme vars (safe to keep) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-
 
 @layer base {
   :root {
@@ -65,15 +99,38 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .theme {
+    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  }
 }
 
-
+@layer utilities {
+  .animate-marquee { animation: marquee var(--duration) linear infinite; }
+  .animate-marquee-vertical { animation: marquee-vertical var(--duration) linear infinite; }
+  .cert-animate-a {
+    animation: cert-float-a 5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .cert-animate-b {
+    animation: cert-float-b 5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .path-dashed { stroke-dasharray: 10 18; }
+  .path-dashed-animate { stroke-dasharray: 10 18; animation: dash-move 4s linear infinite; }
+}
 
 @layer base {
-  * {
-    @apply border-border;
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cert-animate-a,
+  .cert-animate-b {
+    animation: none;
+    transform: none;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  .path-dashed-animate { animation: none; }
 }
